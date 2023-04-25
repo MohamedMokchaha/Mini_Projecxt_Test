@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyLoginApp</string>
+    <string name="Register">Register</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+
 </resources>
