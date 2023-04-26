@@ -3,5 +3,8 @@
     <string name="Register">Register</string>
     <string name="email">email</string>
     <string name="password">password</string>
+    <string name="click_to_login">click_to_login</string>
+    <string name="registerNow">registerNow</string>
+    <string name="Click_to_register">click_to_login</string>
 
 </resources>
