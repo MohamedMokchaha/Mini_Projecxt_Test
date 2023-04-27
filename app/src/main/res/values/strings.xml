@@ -6,5 +6,7 @@
     <string name="click_to_login">click_to_login</string>
     <string name="registerNow">registerNow</string>
     <string name="Click_to_register">click_to_login</string>
+    <string name="logout">logout</string>
+    <string name="bienvenue">Bienvenue</string>
 
 </resources>

@@ -1,10 +1,10 @@
 package com.example.myloginapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,29 +12,45 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
-    MaterialButton loginbtn;
-    EditText username, password;
-    TextView registnow;
+    FirebaseAuth mAuth;
+    MaterialButton bouton_login;
+    EditText inp_username, inp_password;
+    TextView regist_now;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
+        inp_username = findViewById(R.id.email);
+        inp_password = findViewById(R.id.password);
 
-        username = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-
-        loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        bouton_login = findViewById(R.id.loginbtn);
+        progressBar = findViewById(R.id.progress_bar);
 
         // Setup the registration button outside of the login button's onClickListener
-        registnow = findViewById(R.id.registerNow);
-        registnow.setOnClickListener(new View.OnClickListener() {
+        regist_now = findViewById(R.id.registerNow);
+        regist_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
@@ -43,28 +59,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Setup the login button's onClickListener
-        loginbtn.setOnClickListener(new View.OnClickListener() {
+        bouton_login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
-                    //correct
-                    Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
-                } else {
-                    //incorrect
-                    Toast.makeText(MainActivity.this, "LOGIN FAILED !!!", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+                String user, pass;
+                user = inp_username.getText().toString();
+                pass = inp_password.getText().toString();
+                if(TextUtils.isEmpty(user)){
+                    Toast.makeText(MainActivity.this, "Entrer nom d'utilisateur", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(pass)){
+                    Toast.makeText(MainActivity.this, "Entrer le mot de passe", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                // Show progress bar
-                progressBar.setVisibility(View.VISIBLE);
-
-                // Hide progress bar after 3 seconds
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressBar.setVisibility(View.GONE);
-                    }
-                }, 3000);
+                mAuth.signInWithEmailAndPassword(user, pass)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(MainActivity.this, "Echec de l'authentification, vérifiez vos informations de connexion", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
     }
