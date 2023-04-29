@@ -8,5 +8,9 @@
     <string name="Click_to_register">click_to_login</string>
     <string name="logout">logout</string>
     <string name="bienvenue">Bienvenue</string>
+    <string name="Name">Name</string>
+    <string name="description_p">Description</string>
+    <string name="price">Price</string>
+    <string name="add_p">Add Product</string>
 
 </resources>
