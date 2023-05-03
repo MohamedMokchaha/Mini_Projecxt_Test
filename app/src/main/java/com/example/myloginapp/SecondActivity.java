@@ -27,9 +27,6 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         add_product = findViewById(R.id.add);
-        nom = findViewById(R.id.nom_p);
-        description_p = findViewById(R.id.description_p);
-        price_p = findViewById(R.id.price);
         auth = FirebaseAuth.getInstance();
         button = findViewById(R.id.logout);
         textView = findViewById(R.id.user_details);

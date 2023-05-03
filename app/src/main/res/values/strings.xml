@@ -12,5 +12,6 @@
     <string name="description_p">Description</string>
     <string name="price">Price</string>
     <string name="add_p">Add Product</string>
+    <string name="ListeClients">Liste Client</string>
 
 </resources>

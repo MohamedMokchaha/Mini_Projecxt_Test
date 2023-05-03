@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/screen"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/signin"
         android:text="Sign in"
-        android:textColor="@color/white"
+        android:textColor="#331FDB"
         android:textSize="35dp"
         android:textStyle="bold"
         android:layout_margin="50dp"
@@ -59,7 +59,7 @@
         android:id="@+id/loginbtn"
         android:layout_below="@id/password"
         android:text="LOGIN"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="#0A943E"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         />
@@ -71,7 +71,7 @@
         android:id="@+id/forgotpass"
         android:layout_below="@id/loginbtn"
         android:text="Forgot password?"
-        android:textColor="@color/white"
+        android:textColor="#331FDB"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"/>
     <TextView
@@ -82,7 +82,7 @@
         android:layout_marginTop="16dp"
         android:text="You Can Register Now"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="#331FDB"
         android:textSize="14sp" />
     <TextView
         android:layout_width="wrap_content"
