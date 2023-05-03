@@ -14,5 +14,6 @@
     <string name="add_p">Add Product</string>
     <string name="ListeClients">Liste Client</string>
     <string name="Commande_en_attente">Commande en attente</string>
+    <string name="AddClient">Add Client</string>
 
 </resources>
