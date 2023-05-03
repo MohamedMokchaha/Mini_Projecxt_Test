@@ -36,6 +36,8 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
 
+
+
     </com.google.android.material.textfield.TextInputLayout>
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -44,6 +46,8 @@
         android:layout_below="@+id/btn_register"
         android:layout_centerHorizontal="true"
         android:visibility="gone" />
+
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register"

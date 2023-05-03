@@ -87,6 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                 }
 
+
                 // Use createUserWithEmailAndPassword method to create a new user with email and password
                 mAuth.createUserWithEmailAndPassword(email, password)
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
